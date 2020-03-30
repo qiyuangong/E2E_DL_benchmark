@@ -21,3 +21,4 @@ Image (in memory) -> Pre-processing -> Inference -> Post-processing -> Result (i
 1. [OpenVINO](https://software.intel.com/en-us/openvino-toolkit)
 2. [TensorFlow](https://www.tensorflow.org/)
 3. [PyTorch](https://pytorch.org/)
+4. [Analytics-Zoo](https://github.com/intel-analytics/analytics-zoo)
