@@ -6,6 +6,31 @@ End2End in this benchmark:
 
 Image (in memory) -> Pre-processing -> Inference -> Post-processing -> Result (in meory)
 
+## General Benchmark API:
+
+```python
+def load_model(model_path):
+    return model
+
+def preprocessing(image):
+    # Pre-processing
+    return image
+
+def predict(model, image):
+    result = model.predict(image)
+    return result
+
+def postprocessing(result):
+    # Top-1
+    # Top-5
+
+def benchmark():
+    # create dummy data or read data from file path
+    # preprocessing
+    # predict
+    # postprocessing
+```
+
 ## Models
 
 1. Resnet_50_v1
