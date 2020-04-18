@@ -6,7 +6,7 @@ End2End in this benchmark:
 
 Image (in memory) -> Pre-processing -> Inference -> Post-processing -> Result (in meory)
 
-## General Benchmark API:
+## General Benchmark API
 
 ```python
 def load_model(model_path):
@@ -24,7 +24,7 @@ def postprocessing(result):
     # Top-1
     # Top-5
 
-def benchmark():
+def benchmark(iteration=200):
     # create dummy data or read data from file path
     # preprocessing
     # predict
@@ -43,6 +43,7 @@ def benchmark():
 ## TensorFlow
 
 ## Reference
+
 1. [OpenVINO](https://software.intel.com/en-us/openvino-toolkit)
 2. [TensorFlow](https://www.tensorflow.org/)
 3. [PyTorch](https://pytorch.org/)
