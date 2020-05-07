@@ -1,45 +1,33 @@
-import torch
-from PIL import Image
+from keras.applications.resnet50 import ResNet50
+from keras.preprocessing import image
+from keras.applications.resnet50 import preprocess_input, decode_predictions
+import numpy as np
 import time
-from torchvision import transforms
 
-# input_image = Image.open(filename)
 
-preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-
-def load_model(model_path=""):
-    if model_path:
-        torch.load(model_path)
-    else:
-        model = torch.hub.load('pytorch/vision:v0.5.0', 'resnet50', pretrained=True)
-    model.eval()
+def load_model():
+    model = ResNet50(weights='imagenet')
     return model
 
 def preprocessing(image):
     # Pre-processing
-    input_tensor = preprocess(image)
-    input_batch = input_tensor.unsqueeze(0)
-    return input_batch
+    input_tensor = preprocess_input(np.expand_dims(image, axis=0))
+    return input_tensor
 
 def predict(model, image):
-    result = model.forward(image)
+    result = model.predict(image)
     return result
 
 def postprocessing(result):
     # Top-1
-    preds = torch.topk(result, 1)
+    preds = decode_predictions(result, top=1)
     # print(preds)
     # Top-5
 
 def benchmark(model, image_path="", batch_size=4, iterations=1):
     # create dummy data or read data from file path
     # input_batch = torch.rand(batch_size, 3, 224, 224) * 256
-    input_image = Image.open(image_path)
+    input_image = image.load_img("/Users/qiyuangong/Develop/Datasets/val_bmp_inception/ILSVRC2012_val_00000001.bmp", target_size=(224, 224))
     start = time.time()
     preprocessing_time = 0
     predict_time = 0
@@ -63,6 +51,7 @@ def benchmark(model, image_path="", batch_size=4, iterations=1):
     print("Average preprocessing time %.2f ms" % (preprocessing_time * 1000 / iterations))
     print("Average predict time %.2f ms" % (predict_time * 1000 / iterations))
     print("Average postprocessing time %.2f ms" % (postprocessing_time * 1000 / iterations))
+
 
 if __name__ == '__main__':
     model = load_model()
