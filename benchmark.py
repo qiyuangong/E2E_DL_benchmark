@@ -7,12 +7,13 @@ from glob import glob
 """
 Base class for benchmark
 """
-class Benchmark(Object):
+class Benchmark:
 
     def __init__(self):
         pass
 
     def read_image(self, input_path):
+        input_path = os.path.normpath(input_path)
         files = []
         if os.path.isdir(input_path):
             print("Reading from dir")
@@ -22,7 +23,7 @@ class Benchmark(Object):
             print("Reading from val.txt")
             with open(input_path, "r") as test_file:
                 for line in test_file:
-                    files.append(line.split()[0])
+                    files.append(os.path.join(os.path.dirname(input_path), line.split()[0]))
         else:
             print("Reading from file")
             files = [os.path.normpath(input_path)]
@@ -73,3 +74,8 @@ class Benchmark(Object):
         print("Average preprocessing time %.2f ms" % (preprocessing_time * 1000 / iterations))
         print("Average predict time %.2f ms" % (predict_time * 1000 / iterations))
         print("Average postprocessing time %.2f ms" % (postprocessing_time * 1000 / iterations))
+
+
+if __name__ == '__main__':
+    benchmark = Benchmark()
+    print(benchmark.read_image("/Users/qiyuangong/Develop/Datasets/val_bmp_32/val.txt"))
