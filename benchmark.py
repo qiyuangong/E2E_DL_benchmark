@@ -1,10 +1,32 @@
 import time
+import cv2
+import PIL
+import os
+from glob import glob
 
-
+"""
+Base class for benchmark
+"""
 class Benchmark(Object):
 
     def __init__(self):
         pass
+
+    def read_image(self, input_path):
+        files = []
+        if os.path.isdir(input_path):
+            print("Reading from dir")
+            path = os.path.join(input_path, '*')
+            files = glob(path, recursive=True)
+        elif os.path.isfile(input_path) and input_path.endswith(".txt"):
+            print("Reading from val.txt")
+            with open(input_path, "r") as test_file:
+                for line in test_file:
+                    files.append(line.split()[0])
+        else:
+            print("Reading from file")
+            files = [os.path.normpath(input_path)]
+        return files
 
     def load_model(self, model_path=""):
         # Return model

@@ -5,6 +5,8 @@ import cv2
 from openvino.inference_engine import IECore, IENetwork
 from utils import aspect_preserving_resize, central_crop, NHWC2HCHW
 
+# Most setting is related to ie_network
+# Rather than exe_network
 ie_network = None
 
 def load_model(model_path):
