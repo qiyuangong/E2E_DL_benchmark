@@ -6,6 +6,8 @@ End2End in this benchmark:
 
 Image (in memory) -> Pre-processing -> Inference -> Post-processing -> Result (in meory)
 
+**Note that:** We only collect metrics (latency and throughput) from Pre-processing to Post-processing.
+
 ## General Benchmark API
 
 ```python
@@ -40,7 +42,15 @@ def benchmark(iteration=200):
 
 ## OpenVINO
 
+OpenVINO Python API.
+
 ## TensorFlow
+
+Keras (TensorFlow.Keras) and TensorFlow 1.15.X API.
+
+## PyTorch
+
+PyTorch and Torch Vision API.
 
 ## Reference
 
