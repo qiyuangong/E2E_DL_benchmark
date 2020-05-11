@@ -40,6 +40,12 @@ def benchmark(iteration=200):
 3. MobileNet
 4. FasterRCNN
 
+## Usage
+
+```bash
+python ${benchmark name}.py -m ${model_path} -b ${batch_size} -i ${iteration}
+```
+
 ## OpenVINO
 
 OpenVINO Python API.
