@@ -48,13 +48,26 @@ python ${benchmark name}.py -m ${model_path} -b ${batch_size} -i ${iteration}
 
 ## OpenVINO
 
+```bash
+#install openvino
+# source openvino config
+```
+
 OpenVINO Python API.
 
 ## TensorFlow
 
+```bash
+pip install tensorflow==1.15.0
+```
+
 Keras (TensorFlow.Keras) and TensorFlow 1.15.X API.
 
 ## PyTorch
+
+```bash
+pip install pytorch
+```
 
 PyTorch and Torch Vision API.
 
