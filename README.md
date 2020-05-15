@@ -69,6 +69,12 @@ Keras (TensorFlow.Keras) and TensorFlow 1.15.X API.
 pip install pytorch
 ```
 
+## Analytics-Zoo
+
+```bash
+pip install analytics-zoo
+```
+
 PyTorch and Torch Vision API.
 
 ## Reference
